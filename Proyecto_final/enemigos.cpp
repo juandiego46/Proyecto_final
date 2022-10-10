@@ -1,46 +1,33 @@
 #include "enemigos.h"
+#include <QDebug>
 
-int enemigos::getX() const
+enemigos::enemigos(QGraphicsItem *evil):QGraphicsPixmapItem(evil)
 {
-    return x;
+    setPixmap(QPixmap(":/images/carro2.png").scaled(30,60));
+}
+enemigos::enemigos(int coches)
+{
+    if(coches > 0 && coches <= 5){
+        setPixmap(QPixmap(":/images/carro2.png").scaled(30,60));
+    }
+     else{
+          setPixmap(QPixmap(":/images/camion.png").scaled(30,90));
+        }
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()),this,SLOT(move()));
+    timer->start(50);
 }
 
-void enemigos::setX(int newX)
+void enemigos::posi()
 {
-    x = newX;
+    setPos(random,0);
 }
 
-int enemigos::getY() const
+void enemigos::move()
 {
-    return y;
-}
-
-void enemigos::setY(int newY)
-{
-    y = newY;
-}
-
-int enemigos::getVx() const
-{
-    return vx;
-}
-
-void enemigos::setVx(int newVx)
-{
-    vx = newVx;
-}
-
-int enemigos::getVy() const
-{
-    return vy;
-}
-
-void enemigos::setVy(int newVy)
-{
-    vy = newVy;
-}
-
-enemigos::enemigos()
-{
-
+   setPos(x(),y()+5);
+   if(pos().y()+60 > 500){
+       scene()->removeItem(this);
+       delete this;
+   }
 }

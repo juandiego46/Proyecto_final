@@ -21,7 +21,7 @@ class mapa:public QObject,
     Q_OBJECT
 private:
     int xx = 0;
-    int yy = -500;
+    int yy = -2500;
     int vx = 0;
     int vy = 0;
 

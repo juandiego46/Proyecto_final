@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>images2/enduro.png</file>
         <file>images2/mapa1.png</file>
-        <file>images2/mapa2.png</file>
-        <file>images2/mapa3.png</file>
+        <file>images2/caminante.png</file>
     </qresource>
 </RCC>

@@ -3,27 +3,29 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsItem>
+#include <QList>
+#include <vector>
+#include <QMainWindow>
+#include <QGraphicsScene>
+#include <QGraphicsRectItem>
+#include <QKeyEvent>
+#include <QTimer>
+#include <QVector>
 
 class enemigos:public QObject,
         public QGraphicsPixmapItem
 {
      Q_OBJECT
 private:
-    int x = 0;
-    int y = 0;
-    int vx = 0;
-    int vy = 0;
-
+    int random = rand() % 420;
+    QTimer *timer;
 public:
-    enemigos();
-    int getX() const;
-    void setX(int newX);
-    int getY() const;
-    void setY(int newY);
-    int getVx() const;
-    void setVx(int newVx);
-    int getVy() const;
-    void setVy(int newVy);
+    enemigos(QGraphicsItem *evil=0);
+    enemigos(int coch);
+    void posi();
+private slots:
+    void move();
+
 };
 
 #endif // ENEMIGOS_H

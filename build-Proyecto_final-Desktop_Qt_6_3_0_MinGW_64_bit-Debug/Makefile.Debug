@@ -124,20 +124,18 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_images.cpp debug\qrc_images2.cpp
 debug/qrc_images.cpp: ../Proyecto_final/images.qrc \
 		C:/Qt/6.3.0/mingw_64/bin/rcc.exe \
-		../Proyecto_final/images/mapa2.png \
-		../Proyecto_final/images/mapa3.png \
-		../Proyecto_final/images/moto.png \
+		../Proyecto_final/images/camion.png \
+		../Proyecto_final/images/aceite.png \
 		../Proyecto_final/images/carro2.png \
 		../Proyecto_final/images/mapa1.png \
-		../Proyecto_final/images/camion.png
+		../Proyecto_final/images/moto.png
 	C:\Qt\6.3.0\mingw_64\bin\rcc.exe -name images ..\Proyecto_final\images.qrc -o debug\qrc_images.cpp
 
 debug/qrc_images2.cpp: ../Proyecto_final/images2.qrc \
 		C:/Qt/6.3.0/mingw_64/bin/rcc.exe \
 		../Proyecto_final/images2/enduro.png \
-		../Proyecto_final/images2/mapa3.png \
-		../Proyecto_final/images2/mapa1.png \
-		../Proyecto_final/images2/mapa2.png
+		../Proyecto_final/images2/caminante.png \
+		../Proyecto_final/images2/mapa1.png
 	C:\Qt\6.3.0\mingw_64\bin\rcc.exe -name images2 ..\Proyecto_final\images2.qrc -o debug\qrc_images2.cpp
 
 compiler_moc_predefs_make_all: debug/moc_predefs.h
@@ -374,7 +372,7 @@ debug/moc_jugador.cpp: ../Proyecto_final/jugador.h \
 	C:\Qt\6.3.0\mingw_64\bin\moc.exe $(DEFINES) --include "C:/Users/EQ01/Documents/Dyrak/UdeA/Informatica.II/Proyecto final/build-Proyecto_final-Desktop_Qt_6_3_0_MinGW_64_bit-Debug/debug/moc_predefs.h" -IC:/Qt/6.3.0/mingw_64/mkspecs/win32-g++ -I"C:/Users/EQ01/Documents/Dyrak/UdeA/Informatica.II/Proyecto final/Proyecto_final" -IC:/Qt/6.3.0/mingw_64/include -IC:/Qt/6.3.0/mingw_64/include/QtWidgets -IC:/Qt/6.3.0/mingw_64/include/QtGui -IC:/Qt/6.3.0/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\Proyecto_final\jugador.h -o debug\moc_jugador.cpp
 
 debug/moc_mainwindow.cpp: ../Proyecto_final/mainwindow.h \
-		../Proyecto_final/mapa.h \
+		../Proyecto_final/enemigos.h \
 		C:/Qt/6.3.0/mingw_64/include/QtCore/QObject \
 		C:/Qt/6.3.0/mingw_64/include/QtCore/qobject.h \
 		C:/Qt/6.3.0/mingw_64/include/QtCore/qobjectdefs.h \
@@ -482,6 +480,7 @@ debug/moc_mainwindow.cpp: ../Proyecto_final/mainwindow.h \
 		C:/Qt/6.3.0/mingw_64/include/QtGui/qimage.h \
 		C:/Qt/6.3.0/mingw_64/include/QtGui/qpixelformat.h \
 		C:/Qt/6.3.0/mingw_64/include/QtWidgets/QGraphicsItem \
+		../Proyecto_final/mapa.h \
 		C:/Qt/6.3.0/mingw_64/include/QtCore/QList \
 		C:/Qt/6.3.0/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Qt/6.3.0/mingw_64/include/QtWidgets/qmainwindow.h \
@@ -924,7 +923,7 @@ debug/jugador.o: ../Proyecto_final/jugador.cpp ../Proyecto_final/jugador.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\jugador.o ..\Proyecto_final\jugador.cpp
 
 debug/main.o: ../Proyecto_final/main.cpp ../Proyecto_final/mainwindow.h \
-		../Proyecto_final/mapa.h \
+		../Proyecto_final/enemigos.h \
 		C:/Qt/6.3.0/mingw_64/include/QtCore/QObject \
 		C:/Qt/6.3.0/mingw_64/include/QtCore/qobject.h \
 		C:/Qt/6.3.0/mingw_64/include/QtCore/qobjectdefs.h \
@@ -1032,6 +1031,7 @@ debug/main.o: ../Proyecto_final/main.cpp ../Proyecto_final/mainwindow.h \
 		C:/Qt/6.3.0/mingw_64/include/QtGui/qimage.h \
 		C:/Qt/6.3.0/mingw_64/include/QtGui/qpixelformat.h \
 		C:/Qt/6.3.0/mingw_64/include/QtWidgets/QGraphicsItem \
+		../Proyecto_final/mapa.h \
 		C:/Qt/6.3.0/mingw_64/include/QtCore/QList \
 		C:/Qt/6.3.0/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Qt/6.3.0/mingw_64/include/QtWidgets/qmainwindow.h \
@@ -1097,7 +1097,7 @@ debug/main.o: ../Proyecto_final/main.cpp ../Proyecto_final/mainwindow.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\Proyecto_final\main.cpp
 
 debug/mainwindow.o: ../Proyecto_final/mainwindow.cpp ../Proyecto_final/mainwindow.h \
-		../Proyecto_final/mapa.h \
+		../Proyecto_final/enemigos.h \
 		C:/Qt/6.3.0/mingw_64/include/QtCore/QObject \
 		C:/Qt/6.3.0/mingw_64/include/QtCore/qobject.h \
 		C:/Qt/6.3.0/mingw_64/include/QtCore/qobjectdefs.h \
@@ -1205,6 +1205,7 @@ debug/mainwindow.o: ../Proyecto_final/mainwindow.cpp ../Proyecto_final/mainwindo
 		C:/Qt/6.3.0/mingw_64/include/QtGui/qimage.h \
 		C:/Qt/6.3.0/mingw_64/include/QtGui/qpixelformat.h \
 		C:/Qt/6.3.0/mingw_64/include/QtWidgets/QGraphicsItem \
+		../Proyecto_final/mapa.h \
 		C:/Qt/6.3.0/mingw_64/include/QtCore/QList \
 		C:/Qt/6.3.0/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Qt/6.3.0/mingw_64/include/QtWidgets/qmainwindow.h \

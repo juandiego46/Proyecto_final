@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "enemigos.h"
 #include "mapa.h"
 #include <QList>
 #include <vector>
@@ -29,11 +30,15 @@ public:
 
 private slots:
     void hmov();
+    void crea_enemigos();
 
 private:
+    int coches = 1;
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     mapa *mapp;
     QTimer *timer;
+    QTimer *timer2;
+    enemigos *evil;
 };
 #endif // MAINWINDOW_H
