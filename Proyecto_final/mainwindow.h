@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "mapa.h"
 #include <QList>
 #include <vector>
 #include <QMainWindow>
@@ -26,8 +27,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void hmov();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
+    mapa *mapp;
+    QTimer *timer;
 };
 #endif // MAINWINDOW_H

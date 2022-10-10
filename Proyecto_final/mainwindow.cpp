@@ -8,12 +8,16 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     scene = new QGraphicsScene();
-    scene->setSceneRect(0,0,500,1000);
+    scene->setSceneRect(0,0,500,500);
     ui->graphicsView->setScene(scene);
-    ui->graphicsView->setGeometry(500,500,510,1010);
-    //scene->addRect(scene->sceneRect());
-    scene->addRect(0,0,500,1000);
-    ui->graphicsView->setBackgroundBrush(QBrush((QImage(":/images/mapa1.png"))));
+    ui->graphicsView->setGeometry(0,0,510,510);
+    scene->addRect(0,0,500,500);
+    mapp = new mapa();
+    mapp->posmapa(0,-500);
+    scene->addItem(mapp);
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()),this,SLOT(hmov()));
+    timer->start(100);
 }
 
 MainWindow::~MainWindow()
@@ -21,3 +25,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::hmov(){
+    if(mapp->getYy() < 0){
+        mapp->setYy(mapp->getYy()+5);
+        mapp->posmapa();
+    }
+}
