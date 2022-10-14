@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer2, SIGNAL(timeout()),this,SLOT(crea_enemigos()));
     timer2->start(2000);
     jugador1 = new jugador;
-    jugador1->posicion(100,250);
+    jugador1->posicion(230,450);
     scene->addItem(jugador1);
 
 }
@@ -51,10 +51,29 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         }
     }
     else if(event->key()==Qt::Key_A){
-        if(jugador1->getX() > 70){
+        if(jugador1->getX() > 80){
             qDebug() << "Preciono la tecla A";
             jugador1->setX(jugador1->getX() - jugador1->getVx());
             qDebug() << "PosX= " << jugador1->getX();
+            qDebug() << "PosY= " << jugador1->getY();
+            jugador1->setPos(jugador1->getX(), jugador1->getY());
+        }
+    }
+    else if(event->key()==Qt::Key_W){
+        if(jugador1->getY() > 0){
+            qDebug() << "Preciono la tecla W";
+            jugador1->setY(jugador1->getY() - jugador1->getVy());
+            qDebug() << "PosX= " << jugador1->getX();
+            qDebug() << "PosY= " << jugador1->getY();
+            jugador1->setPos(jugador1->getX(), jugador1->getY());
+        }
+    }
+    else if(event->key()==Qt::Key_S){
+        if(jugador1->getY() < 450){
+            qDebug() << "Preciono la tecla S";
+            jugador1->setY(jugador1->getY() + jugador1->getVy());
+            qDebug() << "PosX= " << jugador1->getX();
+            qDebug() << "PosY= " << jugador1->getY();
             jugador1->setPos(jugador1->getX(), jugador1->getY());
         }
     }

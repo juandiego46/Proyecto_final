@@ -14,8 +14,8 @@ class jugador: public QObject,
 private:
     int x = 0;
     int y = 0;
-    int vx = 10;
-    int vy = 0;
+    int vx = 8;
+    int vy = 7;
 
 
 
