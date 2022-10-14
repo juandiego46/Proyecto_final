@@ -40,7 +40,27 @@ void jugador::setVy(int newVy)
     vy = newVy;
 }
 
-jugador::jugador()
+jugador::jugador(QGraphicsItem *moto) : QGraphicsPixmapItem(moto)
 {
-
+    setPixmap(QPixmap(":/images/moto.png").scaled(25,50));
 }
+
+void jugador::posicion()
+{
+    setPos(x,y);
+}
+
+void jugador::posicion(int _x, int _y)
+{
+    x = _x;
+    y = _y;
+    setPos(_x, _y);
+}
+
+
+
+
+
+
+
+

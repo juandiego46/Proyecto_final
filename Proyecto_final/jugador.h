@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsItem>
+#include <QKeyEvent>
 
 class jugador: public QObject,
         public QGraphicsPixmapItem
@@ -13,12 +14,12 @@ class jugador: public QObject,
 private:
     int x = 0;
     int y = 0;
-    int vx = 0;
+    int vx = 10;
     int vy = 0;
 
-public:
-    jugador();
 
+
+public:
     int getX() const;
     void setX(int newX);
     int getY() const;
@@ -27,6 +28,12 @@ public:
     void setVx(int newVx);
     int getVy() const;
     void setVy(int newVy);
+
+    jugador(QGraphicsItem *moto = 0);
+    void posicion();
+    void posicion(int _x, int _y);
+
+
 };
 
 #endif // JUGADOR_H

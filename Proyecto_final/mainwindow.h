@@ -2,9 +2,10 @@
 #define MAINWINDOW_H
 
 #include "enemigos.h"
+#include "jugador.h"
 #include "mapa.h"
 #include <QList>
-#include <vector>
+#include <QDebug>
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
@@ -27,18 +28,22 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void keyPressEvent(QKeyEvent *event);
 
-private slots:
+public slots:
     void hmov();
     void crea_enemigos();
+
 
 private:
     int coches = 1;
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
+    jugador *jugador1;
     mapa *mapp;
     QTimer *timer;
     QTimer *timer2;
     enemigos *evil;
+
 };
 #endif // MAINWINDOW_H

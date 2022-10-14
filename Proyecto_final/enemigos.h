@@ -19,10 +19,12 @@ class enemigos:public QObject,
 private:
     int random = rand() % 420;
     QTimer *timer;
+
 public:
     enemigos(QGraphicsItem *evil=0);
     enemigos(int coch);
     void posi();
+
 private slots:
     void move();
 

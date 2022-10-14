@@ -1,6 +1,8 @@
 #include "enemigos.h"
 #include <QDebug>
 
+
+
 enemigos::enemigos(QGraphicsItem *evil):QGraphicsPixmapItem(evil)
 {
     setPixmap(QPixmap(":/images/carro2.png").scaled(30,60));
