@@ -17,8 +17,6 @@ private:
     int vx = 8;
     int vy = 7;
 
-
-
 public:
     int getX() const;
     void setX(int newX);

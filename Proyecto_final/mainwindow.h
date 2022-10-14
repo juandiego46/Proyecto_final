@@ -4,6 +4,7 @@
 #include "enemigos.h"
 #include "jugador.h"
 #include "mapa.h"
+#include "aceite.h"
 #include <QList>
 #include <QDebug>
 #include <QMainWindow>
@@ -30,11 +31,11 @@ public:
     ~MainWindow();
     void keyPressEvent(QKeyEvent *event);
 
+
 public slots:
     void hmov();
     void crea_enemigos();
-
-
+    void aceiteRandom();
 private:
     int coches = 1;
     Ui::MainWindow *ui;
@@ -43,7 +44,9 @@ private:
     mapa *mapp;
     QTimer *timer;
     QTimer *timer2;
+    QTimer *timer3;
     enemigos *evil;
+    aceite *manchas;
 
 };
 #endif // MAINWINDOW_H

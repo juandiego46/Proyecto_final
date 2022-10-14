@@ -25,7 +25,7 @@ public:
     enemigos(int coch);
     void posi();
 
-private slots:
+public slots:
     void move();
 
 };

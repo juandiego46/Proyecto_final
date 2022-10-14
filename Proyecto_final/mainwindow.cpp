@@ -28,6 +28,9 @@ MainWindow::MainWindow(QWidget *parent)
     jugador1 = new jugador;
     jugador1->posicion(230,450);
     scene->addItem(jugador1);
+    timer3 = new QTimer(this);
+    connect(timer3, SIGNAL(timeout()),this,SLOT(aceiteRandom()));
+    timer3->start(100);
 
 }
 
@@ -44,36 +47,25 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     }
     else if(event->key()==Qt::Key_D){
         if(jugador1->getX() < (scene->height())-100){
-            qDebug() << "Preciono la tecla D";
             jugador1->setX(jugador1->getX() + jugador1->getVx());
-            qDebug() << "PosX= " << jugador1->getX();
             jugador1->setPos(jugador1->getX(), jugador1->getY());
         }
     }
     else if(event->key()==Qt::Key_A){
         if(jugador1->getX() > 80){
-            qDebug() << "Preciono la tecla A";
             jugador1->setX(jugador1->getX() - jugador1->getVx());
-            qDebug() << "PosX= " << jugador1->getX();
-            qDebug() << "PosY= " << jugador1->getY();
             jugador1->setPos(jugador1->getX(), jugador1->getY());
         }
     }
     else if(event->key()==Qt::Key_W){
         if(jugador1->getY() > 0){
-            qDebug() << "Preciono la tecla W";
             jugador1->setY(jugador1->getY() - jugador1->getVy());
-            qDebug() << "PosX= " << jugador1->getX();
-            qDebug() << "PosY= " << jugador1->getY();
             jugador1->setPos(jugador1->getX(), jugador1->getY());
         }
     }
     else if(event->key()==Qt::Key_S){
         if(jugador1->getY() < 450){
-            qDebug() << "Preciono la tecla S";
             jugador1->setY(jugador1->getY() + jugador1->getVy());
-            qDebug() << "PosX= " << jugador1->getX();
-            qDebug() << "PosY= " << jugador1->getY();
             jugador1->setPos(jugador1->getX(), jugador1->getY());
         }
     }
@@ -90,12 +82,17 @@ void MainWindow::crea_enemigos()
     scene->addItem(evil);
 }
 
-
+void MainWindow::aceiteRandom()
+{
+    manchas = new aceite;
+    manchas->movimiento();
+    scene->addItem(manchas);
+}
 
 
 void MainWindow::hmov(){
     if(mapp->getYy() < 0){
-        mapp->setYy(mapp->getYy()+5);
+        mapp->setYy(mapp->getYy() + 7);
         mapp->posmapa();
     }
 }
