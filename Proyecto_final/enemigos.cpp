@@ -22,12 +22,26 @@ enemigos::enemigos(int coches)
 
 void enemigos::posi()
 {
+<<<<<<< HEAD
     setPos(random,0);
+=======
+    if(random>90){
+       setPos(random,0);
+    }
+    else{
+        random += 90;
+        setPos(random,0);
+    }
+>>>>>>> 2178e1f (Movimiento al aceite)
 }
 
 void enemigos::move()
 {
+<<<<<<< HEAD
    setPos(x(),y()+5);
+=======
+   setPos(x(),y()+7);
+>>>>>>> 2178e1f (Movimiento al aceite)
    if(pos().y()+60 > 500){
        scene()->removeItem(this);
        delete this;

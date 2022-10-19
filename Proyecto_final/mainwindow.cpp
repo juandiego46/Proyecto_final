@@ -16,12 +16,17 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setScene(scene);
     ui->graphicsView->setGeometry(0,0,510,510);
     scene->addRect(0,0,500,500);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2178e1f (Movimiento al aceite)
     mapp = new mapa();
     mapp->posmapa(0,-2500);
     scene->addItem(mapp);
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()),this,SLOT(hmov()));
     timer->start(100);
+<<<<<<< HEAD
     timer2 = new QTimer(this);
     connect(timer2, SIGNAL(timeout()),this,SLOT(crea_enemigos()));
     timer2->start(2000);
@@ -31,6 +36,20 @@ MainWindow::MainWindow(QWidget *parent)
     timer3 = new QTimer(this);
     connect(timer3, SIGNAL(timeout()),this,SLOT(aceiteRandom()));
     timer3->start(100);
+=======
+
+    timer3 = new QTimer(this);
+    connect(timer3, SIGNAL(timeout()),this,SLOT(aceiteRandom()));
+    timer3->start(8000);
+
+    timer2 = new QTimer(this);
+    connect(timer2, SIGNAL(timeout()),this,SLOT(crea_enemigos()));
+    timer2->start(2000);
+
+    jugador1 = new jugador;
+    jugador1->posicion(230,450);
+    scene->addItem(jugador1);
+>>>>>>> 2178e1f (Movimiento al aceite)
 
 }
 
@@ -85,14 +104,22 @@ void MainWindow::crea_enemigos()
 void MainWindow::aceiteRandom()
 {
     manchas = new aceite;
+<<<<<<< HEAD
     manchas->movimiento();
+=======
+    manchas->posAleatorio();
+>>>>>>> 2178e1f (Movimiento al aceite)
     scene->addItem(manchas);
 }
 
 
 void MainWindow::hmov(){
     if(mapp->getYy() < 0){
+<<<<<<< HEAD
         mapp->setYy(mapp->getYy() + 7);
+=======
+        mapp->setYy(mapp->getYy() + mapp->getVy());
+>>>>>>> 2178e1f (Movimiento al aceite)
         mapp->posmapa();
     }
 }

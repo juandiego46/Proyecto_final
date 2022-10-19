@@ -20,6 +20,7 @@ void mapa::setYy(int newYy)
     yy = newYy;
 }
 
+<<<<<<< HEAD
 int mapa::getVx() const
 {
     return vx;
@@ -29,6 +30,8 @@ void mapa::setVx(int newVx)
 {
     vx = newVx;
 }
+=======
+>>>>>>> 2178e1f (Movimiento al aceite)
 
 int mapa::getVy() const
 {
