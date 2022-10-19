@@ -18,10 +18,14 @@ class enemigos:public QObject,
      Q_OBJECT
 private:
 <<<<<<< HEAD
+<<<<<<< HEAD
     int random = rand() % 420;
 =======
     int random = rand() % 410;
 >>>>>>> 2178e1f (Movimiento al aceite)
+=======
+    int random = rand() % 410;
+>>>>>>> 92fbec7 (Revert "Revert "Movimiento al aceite"")
     QTimer *timer;
 
 public:

@@ -9,9 +9,13 @@
 #include <QGraphicsRectItem>
 #include <QDebug>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <QTimer>
 >>>>>>> 2178e1f (Movimiento al aceite)
+=======
+#include <QTimer>
+>>>>>>> 92fbec7 (Revert "Revert "Movimiento al aceite"")
 
 class aceite:public QObject,
         public QGraphicsPixmapItem
@@ -20,15 +24,21 @@ class aceite:public QObject,
     Q_OBJECT
 private:
 <<<<<<< HEAD
+<<<<<<< HEAD
     int x = 100;
     int y = 0;
     int vel = 5;
 =======
+=======
+>>>>>>> 92fbec7 (Revert "Revert "Movimiento al aceite"")
     int y = -100;
     int vel = 5;
     int random =  rand() % 410;
     QTimer *timer;
+<<<<<<< HEAD
 >>>>>>> 2178e1f (Movimiento al aceite)
+=======
+>>>>>>> 92fbec7 (Revert "Revert "Movimiento al aceite"")
 
 public slots:
     void movimiento();
@@ -36,6 +46,7 @@ public slots:
 public:
     aceite(QGraphicsItem *mancha = 0);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     int getX() const;
     void setX(int newX);
@@ -46,6 +57,8 @@ public:
     int getVel() const;
     void setVel(int newVel);
 =======
+=======
+>>>>>>> 92fbec7 (Revert "Revert "Movimiento al aceite"")
     void posAleatorio();
     int getY() const;
     void setY(int newY);
@@ -54,7 +67,10 @@ public:
     void setVel(int newVel);
 
 
+<<<<<<< HEAD
 >>>>>>> 2178e1f (Movimiento al aceite)
+=======
+>>>>>>> 92fbec7 (Revert "Revert "Movimiento al aceite"")
 };
 
 #endif // ACEITE_H

@@ -21,6 +21,7 @@ void mapa::setYy(int newYy)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int mapa::getVx() const
 {
     return vx;
@@ -32,6 +33,8 @@ void mapa::setVx(int newVx)
 }
 =======
 >>>>>>> 2178e1f (Movimiento al aceite)
+=======
+>>>>>>> 92fbec7 (Revert "Revert "Movimiento al aceite"")
 
 int mapa::getVy() const
 {
