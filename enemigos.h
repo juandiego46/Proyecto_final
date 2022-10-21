@@ -18,7 +18,6 @@ class enemigos:public QObject,
 {
      Q_OBJECT
 private:
-
     int random = rand() % 410;
     QTimer *timer;
 

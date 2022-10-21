@@ -5,6 +5,7 @@
 #include "jugador.h"
 #include "mapa.h"
 #include "aceite.h"
+#include "turbo.h"
 #include <QList>
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -34,6 +35,7 @@ public slots:
     void crea_enemigos();
     void aceiteRandom();
     void colisiones();
+    void turboRandom();
 
 private:
     int coches = 1;
@@ -44,8 +46,10 @@ private:
     QTimer *timer;
     QTimer *timer2;
     QTimer *timer3;
+    QTimer *timer4;
     enemigos *evil;
     aceite *mancha;
+    turbo *nitro;
 
 };
 #endif // MAINWINDOW_H

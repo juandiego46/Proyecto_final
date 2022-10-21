@@ -36,6 +36,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer3, SIGNAL(timeout()),this,SLOT(aceiteRandom()));
     timer3->start(6000);
 
+    timer4 = new QTimer(this);
+    connect(timer4, SIGNAL(timeout()),this,SLOT(turboRandom()));
+    timer4->start(7000);
 }
 
 MainWindow::~MainWindow()
@@ -112,8 +115,20 @@ void MainWindow::colisiones()
             if(Aceite){
                 qDebug() << "Aceite";
             }
+            turbo *Nitro = dynamic_cast<turbo*>(c);
+            if(Nitro){
+                qDebug() << "Nitro";
+            }
         }
     }
+}
+
+void MainWindow::turboRandom()
+{
+    nitro = new turbo();
+    nitro->movimiento();
+    nitro->posAleatorio();
+    scene->addItem(nitro);
 }
 
 

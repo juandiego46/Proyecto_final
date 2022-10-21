@@ -14,14 +14,16 @@ SOURCES += \
     jugador.cpp \
     main.cpp \
     mainwindow.cpp \
-    mapa.cpp
+    mapa.cpp \
+    turbo.cpp
 
 HEADERS += \
     aceite.h \
     enemigos.h \
     jugador.h \
     mainwindow.h \
-    mapa.h
+    mapa.h \
+    turbo.h
 
 FORMS += \
     mainwindow.ui
@@ -34,3 +36,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     images.qrc \
     images2.qrc
+
+DISTFILES += \
+    images/Nitro1.png
