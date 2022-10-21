@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()),this,SLOT(hmov()));
     timer->start(100);
+    connect(timer, SIGNAL(timeout()),this,SLOT(colisiones()));
 
     timer2 = new QTimer(this);
     connect(timer2, SIGNAL(timeout()),this,SLOT(crea_enemigos()));
@@ -52,28 +53,28 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         if(jugador1->getX() < (scene->height())-100){
             jugador1->setX(jugador1->getX() + jugador1->getVx());
             jugador1->setPos(jugador1->getX(), jugador1->getY());
-            colisiones();
+
         }
     }
     else if(event->key()==Qt::Key_A){
         if(jugador1->getX() > 80){
             jugador1->setX(jugador1->getX() - jugador1->getVx());
             jugador1->setPos(jugador1->getX(), jugador1->getY());
-            colisiones();
+
         }
     }
     else if(event->key()==Qt::Key_W){
         if(jugador1->getY() > 0){
             jugador1->setY(jugador1->getY() - jugador1->getVy());
             jugador1->setPos(jugador1->getX(), jugador1->getY());
-            colisiones();
+
         }
     }
     else if(event->key()==Qt::Key_S){
         if(jugador1->getY() < 450){
             jugador1->setY(jugador1->getY() + jugador1->getVy());
             jugador1->setPos(jugador1->getX(), jugador1->getY());
-            colisiones();
+
         }
     }
 }
@@ -99,6 +100,7 @@ void MainWindow::aceiteRandom()
 
 void MainWindow::colisiones()
 {
+
     QList <QGraphicsItem*> ElementosChoca = scene->collidingItems(jugador1);
     if(!ElementosChoca.isEmpty()){
         for(auto c : ElementosChoca){
@@ -112,10 +114,6 @@ void MainWindow::colisiones()
             }
         }
     }
-    else{
-        qDebug() << "NO hay colision";
-    }
-
 }
 
 
