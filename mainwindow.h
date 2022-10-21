@@ -33,6 +33,7 @@ public slots:
     void hmov();
     void crea_enemigos();
     void aceiteRandom();
+    void colisiones();
 
 private:
     int coches = 1;

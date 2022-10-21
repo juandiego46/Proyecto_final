@@ -31,6 +31,7 @@ void mapa::setVy(int newVy)
     vy = newVy;
 }
 
+
 mapa::mapa(QGraphicsItem *map):QGraphicsPixmapItem(map)
 {
     setPixmap(QPixmap(":/images/mapa1.png"));

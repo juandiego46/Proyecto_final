@@ -24,6 +24,9 @@ private:
     int yy = -2500;
     int vy = 7;
 
+public slots:
+
+
 public:
     mapa(QGraphicsItem *map=0);
     void posmapa();
