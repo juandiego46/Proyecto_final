@@ -28,7 +28,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void keyPressEvent(QKeyEvent *event);
-
+    void level();
 
 public slots:
     void hmov();
@@ -36,9 +36,11 @@ public slots:
     void aceiteRandom();
     void colisiones();
     void turboRandom();
+    void on_pushButton_clicked();
 
 private:
     int coches = 1;
+    int nivel = 0;
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     jugador *jugador1;
