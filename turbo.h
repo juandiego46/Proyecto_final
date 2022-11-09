@@ -8,6 +8,7 @@
 #include <QGraphicsRectItem>
 #include <QDebug>
 #include <QTimer>
+#include <QVector>
 
 class turbo: public QObject,
         public QGraphicsPixmapItem
@@ -15,9 +16,11 @@ class turbo: public QObject,
     Q_OBJECT
 private:
     int y = -100;
-    int vel = 7;
+    int vel = 5;
     int random =  rand() % 410;
     QTimer *timer;
+    QVector<QGraphicsItem *> vect_turbo;
+
 public slots:
     void movimiento();
 public:
@@ -30,6 +33,7 @@ public:
     int getVel() const;
     void setVel(int newVel);
     void posAleatorio();
+    void sig_level();
 };
 
 #endif // TURBO_H

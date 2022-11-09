@@ -31,10 +31,22 @@ void mapa::setVy(int newVy)
     vy = newVy;
 }
 
-
 mapa::mapa(QGraphicsItem *map):QGraphicsPixmapItem(map)
 {
-    setPixmap(QPixmap(":/images/mapa1.png"));
+
+}
+
+mapa::mapa(int level)
+{
+    if(level ==1){
+        setPixmap(QPixmap(":/images2/mapa1.png"));
+    }
+    else{
+        setPixmap(QPixmap(":/images/mapa1.png"));
+    }
+    timer = new QTimer();
+    connect(timer, SIGNAL(timeout()),this,SLOT(hmov()));
+    timer->start(50);
 }
 
 void mapa::posmapa()
@@ -45,4 +57,12 @@ void mapa::posmapa()
 void mapa::posmapa(int x, int y)
 {
     setPos(x,y);
+}
+
+void mapa::hmov()
+{
+    if(yy < 0){
+        yy += vy;
+        setPos(xx,yy);
+    }
 }

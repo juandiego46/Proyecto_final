@@ -22,13 +22,15 @@ class mapa:public QObject,
 private:
     int xx = 0;
     int yy = -2500;
-    int vy = 7;
+    int vy = 5;
+    QTimer *timer;
 
 public slots:
-
+    void hmov();
 
 public:
     mapa(QGraphicsItem *map=0);
+    mapa(int level);
     void posmapa();
     void posmapa(int x,int y);
     int getXx() const;

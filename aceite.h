@@ -9,6 +9,7 @@
 #include <QGraphicsRectItem>
 #include <QDebug>
 #include <QTimer>
+#include <QVector>
 
 class aceite: public QObject,
         public QGraphicsPixmapItem
@@ -16,9 +17,10 @@ class aceite: public QObject,
     Q_OBJECT
 private:
     int y = -100;
-    int vel = 7;
+    int vel = 5;
     int random =  rand() % 410;
     QTimer *timer;
+    QVector<QGraphicsItem *> vect_aceite;
 
 public slots:
     void movimiento();
@@ -32,6 +34,8 @@ public:
     int getVel() const;
     void setVel(int newVel);
     void posAleatorio();
+    void sig_level();
+
 
 };
 

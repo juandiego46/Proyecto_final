@@ -28,15 +28,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void keyPressEvent(QKeyEvent *event);
-    void level();
+    void destruir_tiempo();
+
 
 public slots:
-    void hmov();
+
     void crea_enemigos();
     void aceiteRandom();
     void colisiones();
     void turboRandom();
     void on_pushButton_clicked();
+    void level();
 
 private:
     int coches = 1;
@@ -46,6 +48,7 @@ private:
     jugador *jugador1;
     mapa *mapp;
     QTimer *timer;
+    QTimer *timer1;
     QTimer *timer2;
     QTimer *timer3;
     QTimer *timer4;

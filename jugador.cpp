@@ -42,7 +42,17 @@ void jugador::setVy(int newVy)
 
 jugador::jugador(QGraphicsItem *moto) : QGraphicsPixmapItem(moto)
 {
-    setPixmap(QPixmap(":/images/moto.png").scaled(25,50));
+
+}
+
+jugador::jugador(int level)
+{
+    if(level == 1){
+        setPixmap(QPixmap(":/images2/enduro.png").scaled(25,50));
+    }
+    else{
+        setPixmap(QPixmap(":/images/moto.png").scaled(25,50));
+    }
 }
 
 void jugador::posicion()

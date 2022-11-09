@@ -32,21 +32,29 @@ void turbo::posAleatorio()
     }
 }
 
+void turbo::sig_level()
+{
+    if(!vect_turbo.empty()){
+        for(auto it : vect_turbo){
+            scene()->removeItem(it);
+             vect_turbo.removeOne(it);
+        }
+        vect_turbo.clear();
+        delete timer;
+    }
+}
+
 void turbo::movimiento()
 {
     y += vel;
     setPos(x(),y);
-    if(y > 500){
-        scene()->removeItem(this);
-        delete this;
-    }
 }
 
 turbo::turbo(QGraphicsItem *nitro) : QGraphicsPixmapItem(nitro)
 {
     setPixmap(QPixmap(":/images/Nitro1.png").scaled(15,45));
-
+    vect_turbo.push_back(this);
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()),this,SLOT(movimiento()));
-    timer->start(100);
+    timer->start(50);
 }

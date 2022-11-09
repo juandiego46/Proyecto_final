@@ -18,17 +18,31 @@ class enemigos:public QObject,
 {
      Q_OBJECT
 private:
+    int x = 0;
+    int y = 0;
+    int masa = 0;
+    int vy = 7;
     int random = rand() % 410;
     QTimer *timer;
+    QVector<QGraphicsItem *> vect_enemigos;
+
+public slots:
+    void movimiento();
 
 public:
     enemigos(QGraphicsItem *evil=0);
-    enemigos(int coch);
-    void posi();
-
-public slots:
-    void move();
-
+    enemigos(int coch,int level);
+    void posicion();
+    void posi();    
+    int getY() const;
+    void setY(int newY);
+    int getX() const;
+    void setX(int newX);
+    int getMasa() const;
+    void setMasa(int newMasa);
+    int getVy() const;
+    void setVy(int newVy);
+    void sig_level();
 };
 
 #endif // ENEMIGOS_H
