@@ -35,7 +35,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     images.qrc \
-    images2.qrc
+    images2.qrc \
+    inicio.qrc
 
 DISTFILES += \
     images/Nitro1.png

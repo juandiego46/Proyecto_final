@@ -14,31 +14,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setScene(scene);
     ui->graphicsView->setGeometry(0,0,510,510);
     scene->addRect(0,0,500,500);
+    ui->graphicsView->setBackgroundBrush(QBrush((QImage(":/Inicio/inicio.png").scaled(500,500))));
+    jugador1 = nullptr;
 
-    mapp = new mapa();
-    mapp->posmapa(0,-2500);
-    scene->addItem(mapp);
-
-    timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()),this,SLOT(hmov()));
-    timer->start(100);
-    connect(timer, SIGNAL(timeout()),this,SLOT(colisiones()));
-
-    timer2 = new QTimer(this);
-    connect(timer2, SIGNAL(timeout()),this,SLOT(crea_enemigos()));
-    timer2->start(2000);
-
-    jugador1 = new jugador();
-    jugador1->posicion(230,450);
-    scene->addItem(jugador1);
-
-    timer3 = new QTimer(this);
-    connect(timer3, SIGNAL(timeout()),this,SLOT(aceiteRandom()));
-    timer3->start(6000);
-
-    timer4 = new QTimer(this);
-    connect(timer4, SIGNAL(timeout()),this,SLOT(turboRandom()));
-    timer4->start(7000);
 }
 
 MainWindow::~MainWindow()
@@ -67,7 +45,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         }
     }
     else if(event->key()==Qt::Key_W){
-        if(jugador1->getY() > 0){
+        if(jugador1->getY() >= 0){
             jugador1->setY(jugador1->getY() - jugador1->getVy());
             jugador1->setPos(jugador1->getX(), jugador1->getY());
 
@@ -82,9 +60,56 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     }
 }
 
+void MainWindow::on_pushButton_clicked()
+{
+    mapp = new mapa(nivel);
+    mapp->posmapa(0,-2500);
+    scene->addItem(mapp);
+    qDebug()<< nivel;
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()),this,SLOT(colisiones()));
+    timer->start(50);
+
+    timer2 = new QTimer(this);
+    connect(timer2, SIGNAL(timeout()),this,SLOT(crea_enemigos()));
+    timer2->start(2000);
+
+    timer3 = new QTimer(this);
+    connect(timer3, SIGNAL(timeout()),this,SLOT(aceiteRandom()));
+    timer3->start(6000);
+
+    timer4 = new QTimer(this);
+    connect(timer4, SIGNAL(timeout()),this,SLOT(turboRandom()));
+    timer4->start(7000);
+
+    timer1 = new QTimer(this);
+    connect(timer1, SIGNAL(timeout()),this,SLOT(level()));
+    timer1->start(200);
+
+    jugador1 = new jugador(nivel);
+    jugador1->posicion(230,450);
+    scene->addItem(jugador1);
+
+}
+
+void MainWindow::level()
+{
+
+    if(jugador1->getY()<0 && mapp->getYy()>=0){
+        mancha->sig_level();
+        nitro->sig_level();
+        evil->sig_level();
+        scene->removeItem(mapp);
+        scene->removeItem(jugador1);
+        destruir_tiempo();
+        ui->graphicsView->setBackgroundBrush(QBrush((QImage(":/Inicio/inicio.png").scaled(500,500))));
+        nivel++;
+        ui->pushButton->setText("Segundo nivel.");
+    }
+}
 void MainWindow::crea_enemigos()
 {
-    evil = new enemigos(coches);
+    evil = new enemigos(coches,nivel);
     coches++;
     if(coches>6){
         coches = 1;
@@ -130,11 +155,18 @@ void MainWindow::turboRandom()
     nitro->posAleatorio();
     scene->addItem(nitro);
 }
-
-
-void MainWindow::hmov(){
-    if(mapp->getYy() < 0){
-        mapp->setYy(mapp->getYy() + mapp->getVy());
-        mapp->posmapa();
-    }
+void MainWindow::destruir_tiempo()
+{
+    timer->stop();
+    timer2->stop();
+    timer3->stop();
+    timer4->stop();
+    timer1->stop();
+    delete timer;
+    delete timer1;
+    delete timer2;
+    delete timer3;
+    delete timer4;
 }
+
+

@@ -19,7 +19,7 @@ private:
 
 public:
     jugador(QGraphicsItem *moto = 0);
-
+    jugador(int level);
     int getX() const;
     void setX(int newX);
     int getY() const;
