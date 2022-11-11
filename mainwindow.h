@@ -15,6 +15,9 @@
 #include <QTimer>
 #include <QVector>
 #include <QMainWindow>
+#include <QRect>
+#include <QApplication>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

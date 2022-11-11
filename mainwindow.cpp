@@ -143,6 +143,7 @@ void MainWindow::colisiones()
             turbo *Nitro = dynamic_cast<turbo*>(c);
             if(Nitro){
                 qDebug() << "Nitro";
+                scene->removeItem(Nitro);
             }
         }
     }
