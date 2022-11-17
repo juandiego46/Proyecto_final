@@ -13,8 +13,6 @@
 #include <QTimer>
 #include <QVector>
 
-
-
 class mapa:public QObject,
         public QGraphicsPixmapItem
 {

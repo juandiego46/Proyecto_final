@@ -46,6 +46,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     }
     else if(event->key()==Qt::Key_W){
         if(jugador1->getY() >= 0){
+            jugador1->setVy(5);
             jugador1->setY(jugador1->getY() - jugador1->getVy());
             jugador1->setPos(jugador1->getX(), jugador1->getY());
 
@@ -53,6 +54,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     }
     else if(event->key()==Qt::Key_S){
         if(jugador1->getY() < 450){
+            jugador1->setVy(3);
             jugador1->setY(jugador1->getY() + jugador1->getVy());
             jugador1->setPos(jugador1->getX(), jugador1->getY());
 

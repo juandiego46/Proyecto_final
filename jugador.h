@@ -14,8 +14,8 @@ class jugador: public QObject,
 private:
     int x = 0;
     int y = 0;
-    int vx = 8;
-    int vy = 7;
+    int vx = 15;
+    int vy = 5;
 
 public:
     jugador(QGraphicsItem *moto = 0);
