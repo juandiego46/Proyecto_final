@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <QTimer>
 #include <QVector>
+#include <qmainwindow.h>
 
 class turbo: public QObject,
         public QGraphicsPixmapItem
@@ -23,6 +24,7 @@ private:
 
 public slots:
     void movimiento();
+
 public:
     turbo(QGraphicsItem *nitro = 0);
 

@@ -50,6 +50,7 @@ void turbo::movimiento()
     setPos(x(),y);
 }
 
+
 turbo::turbo(QGraphicsItem *nitro) : QGraphicsPixmapItem(nitro)
 {
     setPixmap(QPixmap(":/images/Nitro1.png").scaled(15,45));

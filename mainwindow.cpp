@@ -109,6 +109,15 @@ void MainWindow::level()
         ui->pushButton->setText("Segundo nivel.");
     }
 }
+
+void MainWindow::efectoNitro()
+{
+    jugador1->setVx(20);
+    mapp->setVy(20);
+    evil->setVy(20);
+    mancha->setVel(20);
+    nitro->setVel(20);
+}
 void MainWindow::crea_enemigos()
 {
     evil = new enemigos(coches,nivel);
@@ -130,7 +139,6 @@ void MainWindow::aceiteRandom()
 
 void MainWindow::colisiones()
 {
-
     QList <QGraphicsItem*> ElementosChoca = scene->collidingItems(jugador1);
     if(!ElementosChoca.isEmpty()){
         for(auto c : ElementosChoca){
@@ -146,6 +154,10 @@ void MainWindow::colisiones()
             if(Nitro){
                 qDebug() << "Nitro";
                 scene->removeItem(Nitro);
+                timerEfectoNitro = new QTimer(this);
+                connect(timer, SIGNAL(timeout()),this,SLOT(efectoNitro()));
+                timer->start(0);
+                delete timerEfectoNitro;
             }
         }
     }

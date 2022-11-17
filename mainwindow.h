@@ -42,7 +42,7 @@ public slots:
     void turboRandom();
     void on_pushButton_clicked();
     void level();
-
+    void efectoNitro();
 private:
     int coches = 1;
     int nivel = 0;
@@ -55,6 +55,7 @@ private:
     QTimer *timer2;
     QTimer *timer3;
     QTimer *timer4;
+    QTimer *timerEfectoNitro;
     enemigos *evil;
     aceite *mancha;
     turbo *nitro;
