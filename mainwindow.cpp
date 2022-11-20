@@ -117,7 +117,27 @@ void MainWindow::efectoNitro()
     evil->setVy(20);
     mancha->setVel(20);
     nitro->setVel(20);
+
+//    if(n == 2){
+//        jugador1->setVx(5);
+//        mapp->setVy(5);
+//        evil->setVy(7);
+//        mancha->setVel(7);
+//        nitro->setVel(7);
+//    }
 }
+
+void MainWindow::actualizarReloj()
+{
+    for(int i = 0; i < 3; i++){
+        qDebug() << "Segundos: " << reloj;
+        *reloj = reloj->addSecs(1);
+    }
+//    return true;
+
+}
+
+
 void MainWindow::crea_enemigos()
 {
     evil = new enemigos(coches,nivel);
@@ -155,9 +175,8 @@ void MainWindow::colisiones()
                 qDebug() << "Nitro";
                 scene->removeItem(Nitro);
                 timerEfectoNitro = new QTimer(this);
-                connect(timer, SIGNAL(timeout()),this,SLOT(efectoNitro()));
-                timer->start(0);
-                delete timerEfectoNitro;
+                connect(timerEfectoNitro, SIGNAL(timeout()),this,SLOT(efectoNitro()));
+                timerEfectoNitro->start(0);
             }
         }
     }
@@ -177,11 +196,13 @@ void MainWindow::destruir_tiempo()
     timer3->stop();
     timer4->stop();
     timer1->stop();
+    timerEfectoNitro->stop();
     delete timer;
     delete timer1;
     delete timer2;
     delete timer3;
     delete timer4;
+    delete timerEfectoNitro;
 }
 
 

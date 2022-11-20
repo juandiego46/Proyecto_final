@@ -17,7 +17,7 @@
 #include <QMainWindow>
 #include <QRect>
 #include <QApplication>
-
+#include <QTime>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -43,6 +43,8 @@ public slots:
     void on_pushButton_clicked();
     void level();
     void efectoNitro();
+    void actualizarReloj();
+
 private:
     int coches = 1;
     int nivel = 0;
@@ -56,9 +58,9 @@ private:
     QTimer *timer3;
     QTimer *timer4;
     QTimer *timerEfectoNitro;
+    QTime *reloj;
     enemigos *evil;
     aceite *mancha;
     turbo *nitro;
-
 };
 #endif // MAINWINDOW_H
