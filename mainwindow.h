@@ -48,7 +48,7 @@ public slots:
     void on_pushButton_clicked();
     void level();
     void normal();
-
+    void efectoNitro();
 private:
     int coches = 1;
     int nivel = 0;

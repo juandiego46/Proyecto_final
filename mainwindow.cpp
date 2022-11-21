@@ -113,10 +113,21 @@ void MainWindow::level()
 
 void MainWindow::normal()
 {
-    jugador1->setVy(7);
+    mapp->setVy(5);
+    jugador1->setVy(5);
+    evil->setVy(7);
+    nitro->setVel(5);
 
 }
 
+void MainWindow::efectoNitro()
+{
+    mancha->setVel(30);
+    mapp->setVy(30);
+    jugador1->setVy(30);
+    evil->setVy(30);
+    nitro->setVel(30);
+}
 
 
 void MainWindow::crea_enemigos()
@@ -159,11 +170,11 @@ void MainWindow::colisiones()
             turbo *Nitro = dynamic_cast<turbo*>(c);
             if(Nitro){
                 qDebug() << "Nitro";
-
-                  scene->removeItem(nitro);
-                  jugador1->setVy(20);
-
-                  connect(timer2, SIGNAL(timeout()),this,SLOT(normal()));
+                scene->removeItem(nitro);
+                jugador1->setVy(20);
+                efectoNitro();
+                connect(timer2, SIGNAL(timeout()),this,SLOT(normal()));
+                timer2->start(1500);
            }
         }
     }
