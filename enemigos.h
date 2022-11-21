@@ -11,6 +11,7 @@
 #include <QGraphicsRectItem>
 #include <QKeyEvent>
 #include <QTimer>
+#include <math.h>
 #include <QVector>
 
 class enemigos:public QObject,
@@ -22,6 +23,7 @@ private:
     int y = 0;
     int masa = 0;
     int vy = 7;
+    int vx = 0;
     int random = rand() % 410;
     QTimer *timer;
     QVector<QGraphicsItem *> vect_enemigos;
@@ -43,6 +45,9 @@ public:
     int getVy() const;
     void setVy(int newVy);
     void sig_level();
+    int choque(QGraphicsItem *ca,int vel = 0);
+    int getVx() const;
+    void setVx(int newVx);
 };
 
 #endif // ENEMIGOS_H

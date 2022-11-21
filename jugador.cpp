@@ -40,6 +40,27 @@ void jugador::setVy(int newVy)
     vy = newVy;
 }
 
+int jugador::getMasa() const
+{
+    return masa;
+}
+
+void jugador::setMasa(int newMasa)
+{
+    masa = newMasa;
+}
+
+int jugador::getGiro1() const
+{
+    return giro1;
+}
+
+void jugador::setGiro1(int newGiro1)
+{
+    giro1 = newGiro1;
+}
+
+
 jugador::jugador(QGraphicsItem *moto) : QGraphicsPixmapItem(moto)
 {
 
@@ -67,7 +88,38 @@ void jugador::posicion(int _x, int _y)
     setPos(_x, _y);
 }
 
+void jugador::giro()
+{
+    setTransformOriginPoint(this->boundingRect().center());
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()),this,SLOT(rotacion()));
+    timer->start(100);
 
+
+}
+
+void jugador::rotacion()
+{
+    if(giro1==4){
+        giro1=0;
+        angulo=90;
+        timer->stop();
+    }
+    else{
+
+        setRotation(angulo);
+        angulo+=90;
+        giro1++;
+        y+=vy*2;
+        x+=vx*2;
+        if(random == 1){
+           setPos(x,y);
+        }
+        else{
+             setPos(-1*x,y);
+        }
+    }
+}
 
 
 

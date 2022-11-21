@@ -18,6 +18,11 @@
 #include <QRect>
 #include <QApplication>
 #include <QTime>
+#include <thread>
+#include <chrono>
+
+using namespace std::chrono;
+using namespace std::this_thread;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -42,8 +47,7 @@ public slots:
     void turboRandom();
     void on_pushButton_clicked();
     void level();
-    void efectoNitro();
-    void actualizarReloj();
+    void normal();
 
 private:
     int coches = 1;
@@ -57,7 +61,6 @@ private:
     QTimer *timer2;
     QTimer *timer3;
     QTimer *timer4;
-    QTimer *timerEfectoNitro;
     QTime *reloj;
     enemigos *evil;
     aceite *mancha;

@@ -1,6 +1,5 @@
 #include "turbo.h"
 
-
 int turbo::getY() const
 {
     return y;
@@ -49,7 +48,6 @@ void turbo::movimiento()
     y += vel;
     setPos(x(),y);
 }
-
 
 turbo::turbo(QGraphicsItem *nitro) : QGraphicsPixmapItem(nitro)
 {

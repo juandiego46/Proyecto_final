@@ -46,7 +46,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     }
     else if(event->key()==Qt::Key_W){
         if(jugador1->getY() >= 0){
-            jugador1->setVy(5);
             jugador1->setY(jugador1->getY() - jugador1->getVy());
             jugador1->setPos(jugador1->getX(), jugador1->getY());
 
@@ -68,6 +67,11 @@ void MainWindow::on_pushButton_clicked()
     mapp->posmapa(0,-2500);
     scene->addItem(mapp);
     qDebug()<< nivel;
+
+    jugador1 = new jugador(nivel);
+    jugador1->posicion(230,450);
+    scene->addItem(jugador1);
+
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()),this,SLOT(colisiones()));
     timer->start(50);
@@ -88,9 +92,6 @@ void MainWindow::on_pushButton_clicked()
     connect(timer1, SIGNAL(timeout()),this,SLOT(level()));
     timer1->start(200);
 
-    jugador1 = new jugador(nivel);
-    jugador1->posicion(230,450);
-    scene->addItem(jugador1);
 
 }
 
@@ -110,32 +111,12 @@ void MainWindow::level()
     }
 }
 
-void MainWindow::efectoNitro()
+void MainWindow::normal()
 {
-    jugador1->setVx(20);
-    mapp->setVy(20);
-    evil->setVy(20);
-    mancha->setVel(20);
-    nitro->setVel(20);
+    jugador1->setVy(7);
 
-//    if(n == 2){
-//        jugador1->setVx(5);
-//        mapp->setVy(5);
-//        evil->setVy(7);
-//        mancha->setVel(7);
-//        nitro->setVel(7);
-//    }
 }
 
-void MainWindow::actualizarReloj()
-{
-    for(int i = 0; i < 3; i++){
-        qDebug() << "Segundos: " << reloj;
-        *reloj = reloj->addSecs(1);
-    }
-//    return true;
-
-}
 
 
 void MainWindow::crea_enemigos()
@@ -165,19 +146,25 @@ void MainWindow::colisiones()
             enemigos *Enemigos = dynamic_cast<enemigos*>(c);
             if(Enemigos){
                 qDebug() << "Enemigos";
+                evil->choque(jugador1,jugador1->getVy());
             }
             aceite *Aceite = dynamic_cast<aceite*>(c);
             if(Aceite){
                 qDebug() << "Aceite";
+                jugador1->giro();
+                scene->removeItem(mancha);
+
+
             }
             turbo *Nitro = dynamic_cast<turbo*>(c);
             if(Nitro){
                 qDebug() << "Nitro";
-                scene->removeItem(Nitro);
-                timerEfectoNitro = new QTimer(this);
-                connect(timerEfectoNitro, SIGNAL(timeout()),this,SLOT(efectoNitro()));
-                timerEfectoNitro->start(0);
-            }
+
+                  scene->removeItem(nitro);
+                  jugador1->setVy(20);
+
+                  connect(timer2, SIGNAL(timeout()),this,SLOT(normal()));
+           }
         }
     }
 }
@@ -196,13 +183,12 @@ void MainWindow::destruir_tiempo()
     timer3->stop();
     timer4->stop();
     timer1->stop();
-    timerEfectoNitro->stop();
     delete timer;
     delete timer1;
     delete timer2;
     delete timer3;
     delete timer4;
-    delete timerEfectoNitro;
 }
+
 
 

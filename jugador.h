@@ -5,6 +5,7 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsItem>
 #include <QKeyEvent>
+#include <QTimer>
 
 class jugador: public QObject,
         public QGraphicsPixmapItem
@@ -14,8 +15,16 @@ class jugador: public QObject,
 private:
     int x = 0;
     int y = 0;
-    int vx = 15;
-    int vy = 5;
+    int vx = 7;
+    int vy = 7;
+    int masa = 15;
+    QTimer *timer;
+    int random = rand() % 2;
+    int giro1 = 0;
+    int angulo = 90;
+
+public slots:
+    void rotacion();
 
 public:
     jugador(QGraphicsItem *moto = 0);
@@ -29,8 +38,12 @@ public:
     int getVy() const;
     void setVy(int newVy);
     void posicion();
-    void posicion(int _x, int _y);
-
+    void posicion(int _x, int _y); 
+    int getMasa() const;
+    void setMasa(int newMasa);
+    void giro();
+    int getGiro1() const;
+    void setGiro1(int newGiro1);
 
 };
 

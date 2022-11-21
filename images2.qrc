@@ -5,5 +5,11 @@
         <file>images2/caminante.png</file>
         <file>images2/camioon.png</file>
         <file>images2/nascar.png</file>
+        <file>images2/enduroa.png</file>
+        <file>images2/endurod.png</file>
+        <file>images2/enduroi.png</file>
+        <file>images2/nascair.png</file>
+        <file>images2/nascaira.png</file>
+        <file>images2/nascairad.png</file>
     </qresource>
 </RCC>

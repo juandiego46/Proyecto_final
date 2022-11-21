@@ -56,10 +56,12 @@ enemigos::enemigos(int coches, int level)
         if(coches > 0 && coches <= 5){
             setPixmap(QPixmap(":/images2/nascar.png").scaled(30,60));
             vect_enemigos.push_back(this);
+            masa = 30;
         }
          else{
               setPixmap(QPixmap(":/images2/camioon.png").scaled(30,90));
               vect_enemigos.push_back(this);
+              masa = 60;
         }
 
     }
@@ -67,10 +69,12 @@ enemigos::enemigos(int coches, int level)
         if(coches > 0 && coches <= 5){
             setPixmap(QPixmap(":/images/carro2.png").scaled(30,60));
             vect_enemigos.push_back(this);
+            masa = 30;
         }
          else{
               setPixmap(QPixmap(":/images/camion.png").scaled(30,90));
               vect_enemigos.push_back(this);
+              masa = 60;
         }
     }
     timer = new QTimer(this);
@@ -96,11 +100,24 @@ void enemigos::posi()
     }
 }
 
+int enemigos::getVx() const
+{
+    return vx;
+}
+
+void enemigos::setVx(int newVx)
+{
+    vx = newVx;
+}
+
 void enemigos::movimiento()
 {
+
     y += vy;
+    x += vx;
     setPos(x,y);
 }
+
 
 void enemigos::sig_level()
 {
@@ -112,5 +129,23 @@ void enemigos::sig_level()
         vect_enemigos.clear();
         delete timer;
     }
+}
+
+int enemigos::choque(QGraphicsItem *ca, int vel)
+{
+    float coss = 0.86;
+    float senn = 0.5;
+    float cot = 0.58;
+    int v = (2*vy-vel)/(2*(coss-(senn*cot)));
+    for(auto it: vect_enemigos){
+         if(it->collidesWithItem(ca)){
+
+             vy = v*cos(60/180*3.14);
+             vx = v*sin(60/180*314);
+             qDebug()<<v<<" "<<vx<<" "<<vy;
+     }
+
+    return v;
+  }
 }
 
