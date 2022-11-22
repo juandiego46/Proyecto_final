@@ -54,7 +54,6 @@ void aceite::sig_level()
             scene()->removeItem(it);
              vect_aceite.removeOne(it);
         }
-        vect_aceite.clear();
         delete timer;
     }
 }

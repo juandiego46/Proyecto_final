@@ -18,11 +18,6 @@
 #include <QRect>
 #include <QApplication>
 #include <QTime>
-#include <thread>
-#include <chrono>
-
-using namespace std::chrono;
-using namespace std::this_thread;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,6 +32,7 @@ public:
     ~MainWindow();
     void keyPressEvent(QKeyEvent *event);
     void destruir_tiempo();
+    void sig_level();
 
 
 public slots:
@@ -65,5 +61,6 @@ private:
     enemigos *evil;
     aceite *mancha;
     turbo *nitro;
+    QVector<enemigos *> vect_enemigos;
 };
 #endif // MAINWINDOW_H

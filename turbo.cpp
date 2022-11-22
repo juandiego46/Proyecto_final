@@ -38,7 +38,6 @@ void turbo::sig_level()
             scene()->removeItem(it);
              vect_turbo.removeOne(it);
         }
-        vect_turbo.clear();
         delete timer;
     }
 }

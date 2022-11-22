@@ -26,7 +26,6 @@ private:
     int vx = 0;
     int random = rand() % 410;
     QTimer *timer;
-    QVector<QGraphicsItem *> vect_enemigos;
 
 public slots:
     void movimiento();
@@ -44,7 +43,6 @@ public:
     void setMasa(int newMasa);
     int getVy() const;
     void setVy(int newVy);
-    void sig_level();
     int choque(QGraphicsItem *ca,int vel = 0);
     int getVx() const;
     void setVx(int newVx);
