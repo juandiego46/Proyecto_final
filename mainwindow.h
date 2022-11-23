@@ -33,6 +33,7 @@ public:
     void keyPressEvent(QKeyEvent *event);
     void destruir_tiempo();
     void sig_level();
+    void colision_enemigos();
 
 
 public slots:
@@ -45,9 +46,20 @@ public slots:
     void level();
     void normal();
     void efectoNitro();
+    void hmov();
+
 private:
+
     int coches = 1;
     int nivel = 0;
+    float coss = 0.86;
+    float senn = 0.5;
+    float cot = 0.58;
+    int v1 = 0;
+    int v2 = 0;
+    int mov = 0;
+    int vida = 2;
+    QKeyEvent *event;
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     jugador *jugador1;
@@ -62,5 +74,7 @@ private:
     aceite *mancha;
     turbo *nitro;
     QVector<enemigos *> vect_enemigos;
+    QVector<aceite *> vect_aceite;
+    QVector<turbo *> vect_turbo;
 };
 #endif // MAINWINDOW_H

@@ -55,12 +55,12 @@ enemigos::enemigos(int coches, int level)
         if(coches > 0 && coches <= 5){
             setPixmap(QPixmap(":/images2/nascar.png").scaled(30,60));
 
-            masa = 30;
+            masa = 2;
         }
          else{
               setPixmap(QPixmap(":/images2/camioon.png").scaled(40,100));
 
-              masa = 60;
+              masa = 4;
         }
 
     }
@@ -68,12 +68,12 @@ enemigos::enemigos(int coches, int level)
         if(coches > 0 && coches <= 5){
             setPixmap(QPixmap(":/images/carro2.png").scaled(30,60));
 
-            masa = 30;
+            masa = 2;
         }
          else{
               setPixmap(QPixmap(":/images/camion.png").scaled(40,100));
 
-              masa = 60;
+              masa = 4;
         }
     }
     timer = new QTimer(this);
@@ -116,23 +116,4 @@ void enemigos::movimiento()
     x += vx;
     setPos(x,y);
 }
-
-//int enemigos::choque(QGraphicsItem *ca, int vel)
-//{
-//    float coss = 0.86;
-//    float senn = 0.5;
-//    float cot = 0.58;
-//    int v = (2*vy-vel)/(2*(coss-(senn*cot)));
-//    for(auto it: vect_enemigos){
-//        QList <QGraphicsItem*> colision = ca->collidingItems(vect_enemigos);
-//         if(colision.isEmpty()){
-
-//             vy = v*cos(60/180*3.14);
-//             vx = v*sin(60/180*314);
-//             qDebug()<<v<<" "<<vx<<" "<<vy;
-//     }
-
-//    return v;
-//  }
-//}
 
