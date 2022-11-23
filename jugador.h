@@ -15,7 +15,7 @@ class jugador: public QObject,
 private:
     int x = 0;
     int y = 0;
-    int vx = 10;
+    int vx = 7;
     int vy = 7;
     int masa = 15;
     QTimer *timer;
@@ -38,7 +38,7 @@ public:
     int getVy() const;
     void setVy(int newVy);
     void posicion();
-    void posicion(int _x, int _y); 
+    void posicion(int _x, int _y);
     int getMasa() const;
     void setMasa(int newMasa);
     void giro();

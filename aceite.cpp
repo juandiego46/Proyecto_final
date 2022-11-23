@@ -3,7 +3,6 @@
 aceite::aceite(QGraphicsItem *mancha) : QGraphicsPixmapItem(mancha)
 {
      setPixmap(QPixmap(":/images/aceite.png").scaled(20,20));
-     vect_aceite.push_back(this);
      timer = new QTimer(this);
      connect(timer, SIGNAL(timeout()),this,SLOT(movimiento()));
      timer->start(50);
@@ -32,7 +31,7 @@ void aceite::setVel(int newVel)
 void aceite::movimiento()
 {
     y += vel;
-    setPos(x(),y);      
+    setPos(x(),y);
 }
 
 
@@ -47,16 +46,6 @@ void aceite::posAleatorio()
     }
 }
 
-void aceite::sig_level()
-{
-    if(!vect_aceite.empty()){
-        for(auto it : vect_aceite){
-            scene()->removeItem(it);
-             vect_aceite.removeOne(it);
-        }
-        delete timer;
-    }
-}
 
 
 

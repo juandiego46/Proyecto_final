@@ -34,7 +34,7 @@ public:
     enemigos(QGraphicsItem *evil=0);
     enemigos(int coch,int level);
     void posicion();
-    void posi();    
+    void posi();
     int getY() const;
     void setY(int newY);
     int getX() const;
