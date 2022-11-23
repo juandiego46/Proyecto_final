@@ -20,6 +20,7 @@ private:
     int vel = 5;
     int random =  rand() % 410;
     QTimer *timer;
+    QVector<QGraphicsItem *> vect_turbo;
 
 public slots:
     void movimiento();

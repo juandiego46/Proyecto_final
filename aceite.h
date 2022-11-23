@@ -20,6 +20,7 @@ private:
     int vel = 5;
     int random =  rand() % 410;
     QTimer *timer;
+    QVector<QGraphicsItem *> vect_aceite;
 
 public slots:
     void movimiento();

@@ -94,6 +94,8 @@ void jugador::giro()
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()),this,SLOT(rotacion()));
     timer->start(100);
+
+
 }
 
 void jugador::rotacion()
@@ -101,7 +103,7 @@ void jugador::rotacion()
     if(giro1==4){
         giro1=0;
         angulo=90;
-        delete timer;
+        timer->stop();
     }
     else{
 
@@ -118,7 +120,6 @@ void jugador::rotacion()
         }
     }
 }
-
 
 
 

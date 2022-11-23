@@ -31,49 +31,32 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         close();
     }
     else if(event->key()==Qt::Key_D){
-        if(mov==0){
-            if(jugador1->getX() < (scene->height())-100){
-                jugador1->setX(jugador1->getX() + jugador1->getVx());
-                jugador1->setPos(jugador1->getX(), jugador1->getY());
+        if(jugador1->getX() < (scene->height())-100){
+            jugador1->setX(jugador1->getX() + jugador1->getVx());
+            jugador1->setPos(jugador1->getX(), jugador1->getY());
 
-            }
-            else{
-                event->ignore();
-            }
-       }
+        }
     }
     else if(event->key()==Qt::Key_A){
-        if(mov==0){
-            if(jugador1->getX() > 80){
-                jugador1->setX(jugador1->getX() - jugador1->getVx());
-                jugador1->setPos(jugador1->getX(), jugador1->getY());
-            }
-            else{
-                event->ignore();
-            }
+        if(jugador1->getX() > 80){
+            jugador1->setX(jugador1->getX() - jugador1->getVx());
+            jugador1->setPos(jugador1->getX(), jugador1->getY());
+
         }
     }
     else if(event->key()==Qt::Key_W){
-        if(mov==0){
-            if(jugador1->getY() >= 0){
-                jugador1->setY(jugador1->getY() - jugador1->getVy());
-                jugador1->setPos(jugador1->getX(), jugador1->getY());
-            }
-            else{
-                event->ignore();
-            }
+        if(jugador1->getY() >= 0){
+            jugador1->setY(jugador1->getY() - jugador1->getVy());
+            jugador1->setPos(jugador1->getX(), jugador1->getY());
+
         }
     }
     else if(event->key()==Qt::Key_S){
-        if(mov==0){
-            if(jugador1->getY() < 450){
-                jugador1->setVy(3);
-                jugador1->setY(jugador1->getY() + jugador1->getVy());
-                jugador1->setPos(jugador1->getX(), jugador1->getY());
-            }
-            else{
-                 event->ignore();
-            }
+        if(jugador1->getY() < 450){
+            jugador1->setVy(3);
+            jugador1->setY(jugador1->getY() + jugador1->getVy());
+            jugador1->setPos(jugador1->getX(), jugador1->getY());
+
         }
     }
 }
@@ -106,7 +89,7 @@ void MainWindow::on_pushButton_clicked()
 
     timer1 = new QTimer(this);
     connect(timer1, SIGNAL(timeout()),this,SLOT(level()));
-    timer1->start(2000);
+    timer1->start(200);
 
 
 }
@@ -115,6 +98,8 @@ void MainWindow::level()
 {
 
     if(jugador1->getY()<0 && mapp->getYy()>=0){
+        mancha->sig_level();
+        nitro->sig_level();
         sig_level();
         scene->removeItem(mapp);
         scene->removeItem(jugador1);
@@ -122,26 +107,6 @@ void MainWindow::level()
         ui->graphicsView->setBackgroundBrush(QBrush((QImage(":/Inicio/inicio.png").scaled(500,500))));
         nivel++;
         ui->pushButton->setText("Segundo nivel.");
-    }
-    else if(mov>0 && vida >0){
-        scene->removeItem(mapp);
-        scene->removeItem(jugador1);
-        vida--;
-        mov = 0;
-        sig_level();
-        destruir_tiempo();
-        ui->graphicsView->setBackgroundBrush(QBrush((QImage(":/Inicio/inicio.png").scaled(500,500))));
-        ui->pushButton->setText("Intentar de nuevo.");
-    }
-    else if(mov>0 && vida == 0){
-        destruir_tiempo();
-        scene->removeItem(mapp);
-        scene->removeItem(jugador1);
-        sig_level();
-        vida = 3;
-        mov = 0;
-        ui->graphicsView->setBackgroundBrush(QBrush((QImage(":/Inicio/gameover.png").scaled(500,500))));
-        ui->pushButton->setText("Volver a empezar");
     }
 }
 
@@ -161,8 +126,8 @@ void MainWindow::efectoNitro()
     jugador1->setVy(30);
     evil->setVy(30);
     nitro->setVel(30);
-
 }
+
 
 void MainWindow::crea_enemigos()
 {
@@ -179,7 +144,6 @@ void MainWindow::crea_enemigos()
 void MainWindow::aceiteRandom()
 {
     mancha = new aceite();
-    vect_aceite.push_back(mancha);
     mancha->movimiento();
     mancha->posAleatorio();
     scene->addItem(mancha);
@@ -191,10 +155,19 @@ void MainWindow::colisiones()
     if(!ElementosChoca.isEmpty()){
         for(auto c : ElementosChoca){
             enemigos *Enemigos = dynamic_cast<enemigos*>(c);
-            if(Enemigos){
-                colision_enemigos();
-                connect(timer1, SIGNAL(timeout()),this,SLOT(normal()));
-                mapp->setVy(0);
+            if(Enemigos){              
+                for(auto it : vect_enemigos){
+                    if(jugador1->collidesWithItem(it)){
+                        float coss = 0.86;
+                        float senn = 0.5;
+                        float cot = 0.58;
+                        int v = (2*it->getVy()-jugador1->getVy())/(2*(coss-(senn*cot)));
+                        it->setVy(v*cos(60/180*3.14));
+                        it->setVx(v*sin(60/180*314)-1);
+
+                       qDebug()<<v<<" "<<it->getVy()<<" "<< it->getVx();
+                    }
+                }
             }
             aceite *Aceite = dynamic_cast<aceite*>(c);
             if(Aceite){
@@ -219,7 +192,6 @@ void MainWindow::colisiones()
 void MainWindow::turboRandom()
 {
     nitro = new turbo();
-    vect_turbo.push_back(nitro);
     nitro->movimiento();
     nitro->posAleatorio();
     scene->addItem(nitro);
@@ -246,49 +218,6 @@ void MainWindow::sig_level()
              vect_enemigos.removeOne(it);
         }
     }
-    if(!vect_aceite.empty()){
-        for(auto it : vect_aceite){
-             scene->removeItem(it);
-             vect_aceite.removeOne(it);
-        }
-    }
-
-    if(!vect_turbo.empty()){
-        for(auto it : vect_turbo){
-             scene->removeItem(it);
-             vect_turbo.removeOne(it);
-        }
-    }
-}
-
-void MainWindow::colision_enemigos()
-{
-    mov++;
-    v1 = ((evil->getMasa()*evil->getVy())-jugador1->getVy())/(2*(coss-(senn*cot)));
-    v2 = (evil->getMasa()*v1*senn)/coss;
-    for(auto it : vect_enemigos){
-        if(jugador1->collidesWithItem(it)){
-            it->setTransformOriginPoint(it->boundingRect().center());
-            it->setRotation(45);
-            it->setVy(v1*cos(30/180*3.14));
-            it->setVx(v1*sin(30/180*314)-1);
-        }   
-    }
-    disconnect(timer3, SIGNAL(timeout()),this,SLOT(aceiteRandom()));
-
-    timer3 = new QTimer(this);
-    connect(timer3, SIGNAL(timeout()),this,SLOT(hmov()));
-    timer3->start(50);
-}
-
-void MainWindow::hmov()
-{
-    jugador1->setTransformOriginPoint(jugador1->boundingRect().center());
-    jugador1->setX(jugador1->getX()+(v2*sin(60/180*314)+1));
-    jugador1->setY(jugador1->getY()+(v2*cos(60/180*314)));
-    jugador1->posicion();
-    jugador1->setRotation(90);
-
 }
 
 
