@@ -323,7 +323,7 @@ void MainWindow::colision_enemigos()
             it->setTransformOriginPoint(it->boundingRect().center());
             it->setRotation(45);
             it->setVy(v1*cos(30/180*3.14));
-            it->setVx(v1*sin(30/180*314)-1);
+            it->setVx(v1*sin(30/180*3.14)-1);
         }
     }
     disconnect(timer3, SIGNAL(timeout()),this,SLOT(aceiteRandom()));
@@ -336,8 +336,8 @@ void MainWindow::colision_enemigos()
 void MainWindow::hmov()
 {
     jugador1->setTransformOriginPoint(jugador1->boundingRect().center());
-    jugador1->setX(jugador1->getX()+(v2*sin(60/180*314)+1));
-    jugador1->setY(jugador1->getY()+(v2*cos(60/180*314)));
+    jugador1->setX(jugador1->getX()+(v2*sin(60/180*3.14)+1));
+    jugador1->setY(jugador1->getY()+(v2*cos(60/180*3.14)));
     jugador1->posicion();
     jugador1->setRotation(90);
 
