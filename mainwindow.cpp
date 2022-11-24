@@ -128,7 +128,17 @@ void MainWindow::level()
         mov = 0;
         v1 = 0;
         v2 = 0;
-        nivel++;
+        if(nivel == 0){
+           ui->graphicsView->setBackgroundBrush(QBrush((QImage(":/Inicio/inicio.png").scaled(500,500))));
+            nivel++;
+        }
+        else{
+            ui->graphicsView->setBackgroundBrush(QBrush((QImage(":/Inicio/TRIUNFO.png").scaled(500,500))));
+            ui->pushButton->setText("Start");
+            nivel = 0;
+            vida = 2;
+        }
+
     }
     else if(mov>0 && vida >0){
         scene->removeItem(mapp);
@@ -229,6 +239,17 @@ void MainWindow::colisiones()
                 colision_enemigos();
                 connect(timer1, SIGNAL(timeout()),this,SLOT(normal()));
                 mapp->setVy(0);
+                if(!vect_turbo.empty()){
+                    for(auto it : vect_turbo){
+                            it->setVel(0);
+                            }
+                    }
+                if(!vect_aceite.empty()){
+                    for(auto it : vect_aceite){
+                            it->setVel(0);
+                            }
+                    }
+
             }
             aceite *Aceite = dynamic_cast<aceite*>(c);
             if(Aceite){

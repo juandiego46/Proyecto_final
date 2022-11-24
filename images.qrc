@@ -6,11 +6,5 @@
         <file>images/camion.png</file>
         <file>images/carro2.png</file>
         <file>images/Nitro1.png</file>
-        <file>images/carro2i.png</file>
-        <file>images/carroa.png</file>
-        <file>images/carroad.png</file>
-        <file>images/motob.png</file>
-        <file>images/motod.png</file>
-        <file>images/motoi.png</file>
     </qresource>
 </RCC>

@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>Inicio/gameover.png</file>
         <file>Inicio/inicio.png</file>
+        <file>Inicio/TRIUNFO.png</file>
     </qresource>
 </RCC>
