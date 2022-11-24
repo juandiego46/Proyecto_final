@@ -119,15 +119,21 @@ void MainWindow::level()
         scene->removeItem(mapp);
         scene->removeItem(jugador1);
         destruir_tiempo();
-        ui->graphicsView->setBackgroundBrush(QBrush((QImage(":/Inicio/inicio.png").scaled(500,500))));
-        nivel++;
+        ui->graphicsView->setBackgroundBrush(QBrush((QImage(":/Inicio/inicio.png").scaled(500,500))));      
         ui->pushButton->setText("Segundo nivel.");
+        mov = 0;
+        v1 = 0;
+        v2 = 0;
+        nivel++;
     }
     else if(mov>0 && vida >0){
         scene->removeItem(mapp);
         scene->removeItem(jugador1);
         vida--;
         mov = 0;
+        v1 = 0;
+        v2 = 0;
+        delete jugador1;
         sig_level();
         destruir_tiempo();
         ui->graphicsView->setBackgroundBrush(QBrush((QImage(":/Inicio/inicio.png").scaled(500,500))));
@@ -136,10 +142,13 @@ void MainWindow::level()
     else if(mov>0 && vida == 0){
         destruir_tiempo();
         scene->removeItem(mapp);
-        scene->removeItem(jugador1);
+        scene->removeItem(jugador1);     
         sig_level();
         vida = 3;
         mov = 0;
+        v1 = 0;
+        v2 = 0;
+        nivel = 0;
         ui->graphicsView->setBackgroundBrush(QBrush((QImage(":/Inicio/gameover.png").scaled(500,500))));
         ui->pushButton->setText("Volver a empezar");
     }
