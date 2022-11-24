@@ -48,6 +48,7 @@ public slots:
     void efectoNitro();
     void hmov();
 
+
 private:
 
     int coches = 1;

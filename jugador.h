@@ -38,8 +38,6 @@ public:
     void setVy(int newVy);
     void posicion();
     void posicion(int _x, int _y);
-    int getMasa() const;
-    void setMasa(int newMasa);
     void giro();
     int getGiro1() const;
     void setGiro1(int newGiro1);

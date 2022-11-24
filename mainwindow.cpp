@@ -110,6 +110,8 @@ void MainWindow::on_pushButton_clicked()
     connect(timer1, SIGNAL(timeout()),this,SLOT(level()));
     timer1->start(1500);
 
+    ui->lcdVidas->display(vida + 1);
+    ui->labelVidas->setText("Vidas: ");
 
 }
 
@@ -146,7 +148,7 @@ void MainWindow::level()
         scene->removeItem(mapp);
         scene->removeItem(jugador1);     
         sig_level();
-        vida = 3;
+        vida = 2;
         mov = 0;
         v1 = 0;
         v2 = 0;
@@ -189,8 +191,11 @@ void MainWindow::efectoNitro()
             it->setVel(30);
         }
      }
-
-
+    if(!vect_turbo.empty()){
+        for(auto it : vect_turbo){
+            it->setVel(30);
+        }
+    }
 }
 
 void MainWindow::crea_enemigos()
@@ -233,9 +238,13 @@ void MainWindow::colisiones()
             }
             turbo *Nitro = dynamic_cast<turbo*>(c);
             if(Nitro){
-                scene->removeItem(nitro);
                 efectoNitro();
                 connect(timer2, SIGNAL(timeout()),this,SLOT(normal()));
+                for(auto it : vect_turbo){
+                        if(jugador1->collidesWithItem(it)){
+                            scene->removeItem(it);
+                        }
+                }
 
            }
         }
