@@ -27,6 +27,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
+    if(jugador1 != nullptr){
     if(event->key()==Qt::Key_F4) {
         close();
     }
@@ -76,6 +77,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
             }
         }
     }
+   }
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -102,11 +104,11 @@ void MainWindow::on_pushButton_clicked()
 
     timer4 = new QTimer(this);
     connect(timer4, SIGNAL(timeout()),this,SLOT(turboRandom()));
-    timer4->start(7000);
+    timer4->start(3000);
 
     timer1 = new QTimer(this);
     connect(timer1, SIGNAL(timeout()),this,SLOT(level()));
-    timer1->start(2000);
+    timer1->start(1500);
 
 
 }
@@ -133,7 +135,7 @@ void MainWindow::level()
         mov = 0;
         v1 = 0;
         v2 = 0;
-        delete jugador1;
+        jugador1 = nullptr;
         sig_level();
         destruir_tiempo();
         ui->graphicsView->setBackgroundBrush(QBrush((QImage(":/Inicio/inicio.png").scaled(500,500))));
@@ -151,28 +153,43 @@ void MainWindow::level()
         nivel = 0;
         ui->graphicsView->setBackgroundBrush(QBrush((QImage(":/Inicio/gameover.png").scaled(500,500))));
         ui->pushButton->setText("Volver a empezar");
+        jugador1 = nullptr;
     }
 }
 
 void MainWindow::normal()
 {
-    mapp->setVy(5);
-    jugador1->setVy(7);
-    jugador1->setVx(10);
-    evil->setVy(7);
-    nitro->setVel(5);
+    if(nivel == 0){
+        mapp->setVy(5);
+        jugador1->setVy(7);
+        jugador1->setVx(10);
+        evil->setVy(7);
+        nitro->setVel(5);
+        disconnect(timer3, SIGNAL(timeout()),this,SLOT(hmov()));
+    }
+    else{
+        mapp->setVy(5);
+        jugador1->setVy(7);
+        jugador1->setVx(10);
+        evil->setVy(10);
+        nitro->setVel(5);
+        disconnect(timer3, SIGNAL(timeout()),this,SLOT(hmov()));
+    }
 }
 
 void MainWindow::efectoNitro()
 {
-    mancha->setVel(30);
     mapp->setVy(30);
     jugador1->setVy(30);
-    //evil->setVy(30);
     for(auto it : vect_enemigos){
          it->setVy(30);
     }
-    nitro->setVel(30);
+    if(!vect_aceite.empty()){
+        for(auto it : vect_aceite){
+            it->setVel(30);
+        }
+     }
+
 
 }
 
@@ -217,10 +234,9 @@ void MainWindow::colisiones()
             turbo *Nitro = dynamic_cast<turbo*>(c);
             if(Nitro){
                 scene->removeItem(nitro);
-                jugador1->setVy(20);
                 efectoNitro();
                 connect(timer2, SIGNAL(timeout()),this,SLOT(normal()));
-                timer2->start(1000);
+
            }
         }
     }
@@ -236,11 +252,7 @@ void MainWindow::turboRandom()
 }
 void MainWindow::destruir_tiempo()
 {
-    timer->stop();
-    timer2->stop();
-    timer3->stop();
-    timer4->stop();
-    timer1->stop();
+
     delete timer;
     delete timer1;
     delete timer2;

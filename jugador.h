@@ -17,7 +17,6 @@ private:
     int y = 0;
     int vx = 10;
     int vy = 7;
-    int masa = 15;
     QTimer *timer;
     int random = rand() % 2;
     int giro1 = 0;

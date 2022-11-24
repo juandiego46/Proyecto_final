@@ -40,16 +40,6 @@ void jugador::setVy(int newVy)
     vy = newVy;
 }
 
-int jugador::getMasa() const
-{
-    return masa;
-}
-
-void jugador::setMasa(int newMasa)
-{
-    masa = newMasa;
-}
-
 int jugador::getGiro1() const
 {
     return giro1;
