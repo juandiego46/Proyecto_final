@@ -15,7 +15,7 @@ class jugador: public QObject,
 private:
     int x = 0;
     int y = 0;
-    int vx = 7;
+    int vx = 10;
     int vy = 7;
     int masa = 15;
     QTimer *timer;

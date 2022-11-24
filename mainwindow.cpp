@@ -158,7 +158,7 @@ void MainWindow::normal()
 {
     mapp->setVy(5);
     jugador1->setVy(7);
-    jugador1->setVx(7);
+    jugador1->setVx(10);
     evil->setVy(7);
     nitro->setVel(5);
 }
@@ -168,7 +168,10 @@ void MainWindow::efectoNitro()
     mancha->setVel(30);
     mapp->setVy(30);
     jugador1->setVy(30);
-    evil->setVy(30);
+    //evil->setVy(30);
+    for(auto it : vect_enemigos){
+         it->setVy(30);
+    }
     nitro->setVel(30);
 
 }
@@ -207,19 +210,17 @@ void MainWindow::colisiones()
             }
             aceite *Aceite = dynamic_cast<aceite*>(c);
             if(Aceite){
-
                 jugador1->giro();
                 scene->removeItem(mancha);
                 connect(timer1, SIGNAL(timeout()),this,SLOT(normal()));
             }
             turbo *Nitro = dynamic_cast<turbo*>(c);
             if(Nitro){
-
                 scene->removeItem(nitro);
                 jugador1->setVy(20);
                 efectoNitro();
                 connect(timer2, SIGNAL(timeout()),this,SLOT(normal()));
-
+                timer2->start(1000);
            }
         }
     }
